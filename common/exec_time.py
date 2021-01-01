@@ -2,12 +2,14 @@ import time
 from functools import wraps
 
 
-def exec_time(func):
+def exec_time(func, log=None):
     """
     功能描述：定义嵌套函数，用来打印出装饰的函数的执行时间
     :param func: func参数（自动）
+    :param log: 日志打印函数
     :return: 返回内部wrapper函数
     """
+    logger = log
 
     @wraps(func)
     def wrapper(*args, **kwargs):
@@ -20,7 +22,10 @@ def exec_time(func):
         start = time.time() * 1000
         func_ret = func(*args, **kwargs)
         end = time.time() * 1000
-        print('func:{%s} exec time is:{%.5f} ms' % (func.__name__, end - start))
+        if logger is None:
+            print('func:{%s} exec time is:{%.5f} ms' % (func.__name__, end - start))
+        else:
+            logger.debug('func:{%s} exec time is:{%.5f} ms' % (func.__name__, end - start))
         return func_ret
 
     # 返回嵌套的函数
