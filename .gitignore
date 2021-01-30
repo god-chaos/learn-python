@@ -3,3 +3,5 @@ test/.pytest_cache/
 .idea/
 .vscode/
 .DS_Store
+test/test_Ssh2Client.py
+test/test_SftpClient.py
