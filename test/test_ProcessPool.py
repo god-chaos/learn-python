@@ -17,7 +17,7 @@ def test_process():
         msg = 'this is id'.format(i)
         pool.exec_task(print_message, msg)
 
-    ret = pool.get_task_result(120)
+    ret = pool.get_task_result(timeout=120)
     if not ret:
         pool.stop(True)
     else:
