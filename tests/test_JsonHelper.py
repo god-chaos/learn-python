@@ -11,6 +11,7 @@ class TestJsonGet:
           'c2': {'e': 10, 'f': 'string'}, 'z': [{'z1': 10}, {'z1': 20}]}
 
     def test_get1(self):
+        print('test')
         assert 10 == get_one_json_node(self.js, 'a')
         assert 10 == get_one_json_node(self.js, 'e')
 

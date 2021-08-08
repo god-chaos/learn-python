@@ -8,6 +8,7 @@ def print_message(msg):
     log.info("print message: {}, process id is :{}".format(msg, os.getpid()))
     time.sleep(2)
     log.info("print message end, process id is :{}".format(os.getpid()))
+    return True
 
 
 def test_process():
@@ -23,7 +24,6 @@ def test_process():
     else:
         log.info(ret)
         pool.stop()
-    pass
 
 
 if __name__ == '__main__':

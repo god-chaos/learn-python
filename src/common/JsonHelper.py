@@ -1,3 +1,5 @@
+from jsonpath_rw import parse as parserw
+import jsonpath
 from jsonpath_ng import parse
 
 from common.exec_time import exec_time
@@ -129,15 +131,9 @@ def op_dict(data, field):
     return data
 
 
-import jsonpath
-
-
 @exec_time
 def test_jsonpath(data, field):
     return jsonpath.jsonpath(data, field)
-
-
-from jsonpath_rw import parse as parserw
 
 
 @exec_time

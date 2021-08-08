@@ -23,7 +23,8 @@ class Ssh2Client:
         self.__channel = None
 
         # 7-bit C1 ANSI sequences
-        self.__ansi_escape = re.compile(r'''
+        self.__ansi_escape = re.compile(
+            r"""
                 \x1B  # ESC
                 (?:   # 7-bit C1 Fe (except CSI)
                 [@-Z\\-_]
@@ -33,7 +34,7 @@ class Ssh2Client:
                 [ -/]*  # Intermediate bytes
                 [@-~]   # Final byte
             )
-        ''', re.VERBOSE)
+        """, re.VERBOSE)
 
     def __del__(self):
         self.__close()
