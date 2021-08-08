@@ -14,8 +14,8 @@ class Ssh2Client:
         """
         功能描述：构造函数
 
-        :param host: 主机地址
-        :param port: 端口信息
+        @param host: 主机地址
+        @param port: 端口信息
         """
         self.__host = host
         self.__port = port
@@ -42,9 +42,10 @@ class Ssh2Client:
     def connect(self, user: str, pwd: str) -> bool:
         """
         功能描述：连接远程主机
-        :param user: 用户名
-        :param pwd:  用户密码
-        :return: 连接成功还是失败
+
+        @param user: 用户名
+        @param pwd:  用户密码
+        @return: 连接成功还是失败
         """
         self.__close()
 
@@ -56,10 +57,11 @@ class Ssh2Client:
     def exec(self, cmd: str, end_str=('# ', '$ ', '? ', '% ', '#', '$', '?', '%'), timeout=5) -> str:
         """
         功能描述：执行命令
-        :param cmd: shell命令
-        :param end_str: 提示符
-        :param timeout: 超时间时间
-        :return: 命令执行结果
+
+        @param cmd: shell命令
+        @param end_str: 提示符
+        @param timeout: 超时间时间
+        @return: 命令执行结果
         """
         if not self.__channel:
             self.__channel = self.__ssh.invoke_shell(term='xterm', width=4096, height=48)
@@ -83,10 +85,11 @@ class Ssh2Client:
 
     def __recv_without_end(self, cmd, timeout):
         """
-        功能描述：接收命令执行结果，不进行任何比对。
-        :param cmd: 命令
-        :param timeout:超时时间，最长等待3秒
-        :return: 命令执行结果
+        功能描述：接收命令执行结果，不进行任何比对
+
+        @param cmd: 命令
+        @param timeout:超时时间，最长等待3秒
+        @return: 命令执行结果
         """
         out_str = ''
         if timeout > 3:
@@ -106,9 +109,10 @@ class Ssh2Client:
     def __recv(self, end_str, timeout) -> str:
         """
         功能描述：根据提示符，接收命令执行结果
-        :param end_str: 预期结果结尾
-        :param timeout: 超时间
-        :return: 命令执行结果，去除命令输入提示符
+
+        @param end_str: 预期结果结尾
+        @param timeout: 超时间
+        @return: 命令执行结果，去除命令输入提示符
         """
         out_str = ''
         max_wait_time = timeout * 1000
